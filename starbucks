@@ -1,0 +1,46 @@
+SELECT * FROM starbucks.starbucks1;
+
+
+-- 1. COUNT()
+
+-- Total Amount of coffee cups:
+
+SELECT COUNT(Beverage_category) FROM starbucks.starbucks1;
+
+-- 2. SUM() 
+
+SELECT SUM(Calories)/COUNT(Beverage_category) AS AVG, AVG(Calories) FROM starbucks.starbucks1;
+
+
+-- 3. WHERE()
+
+SELECT Beverage,`Caffeine (mg)` FROM starbucks.starbucks1
+WHERE Beverage = "Brewed Coffee";
+
+
+-- 4.Group by()
+
+SELECT Beverage,COUNT(Beverage) FROM starbucks.starbucks1
+GROUP BY Beverage
+ORDER BY COUNT(Beverage) DESC LIMIT 10;
+
+-- 5. ROUND()
+SELECT ROUND(`Total Fat (g)`) FROM starbucks.starbucks1;
+
+-- 6. CONCAT()
+SELECT CONCAT(ROUND(`Total Fat (g)`),"gr") FROM starbucks.starbucks1;
+
+
+-- 7. ALTER TABLE - ADD COLUMN
+
+ALTER TABLE starbucks.starbucks1
+ADD COLUMN Price INT;
+
+UPDATE starbucks.starbucks1
+SET Price = 5*rand();
+
+
+-- 8. CASE()
+
+SELECT SUM(CASE WHEN `Caffè Latte` LIKE "%True%" THEN 1 ELSE 0 END) AS Caffe_late FROM starbucks.starbucks1;
+
